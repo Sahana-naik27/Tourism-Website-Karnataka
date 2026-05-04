@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Travel Details</title>
+  <link rel="stylesheet" href="details.css" />
+</head>
+<body>
+  <header class="page-header" id="pageHeader">
+    <div class="hero-bg" id="heroBg"></div>
+    <div class="overlay"></div>
+    <div class="header-content">
+      <a href="index.html" class="back-link" aria-label="Back to home page">← Back to Home</a>
+      <p class="eyebrow">Karnataka Travel Guide</p>
+      <h1 id="placeTitle">Destination Details</h1>
+      <p id="heroSubtitle" class="hero-subtitle"></p>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero-actions">
+      <a id="directionsButton" class="directions-btn" href="#" target="_blank" rel="noopener noreferrer" aria-label="Get directions on Google Maps">
+        <span class="directions-icon">📍</span>
+        <span>Get Directions</span>
+      </a>
+    </section>
+
+    <section class="gallery-section">
+      <div id="gallery" class="gallery-grid"></div>
+      <div class="placeholder-card">
+        <img src="" alt="Travel destination preview" />
+      </div>
+    </section>
+
+    <section class="info-grid">
+      <article class="panel">
+        <h2>Things to Do</h2>
+        <ul id="thingsList"></ul>
+      </article>
+
+      <article class="panel">
+        <h2>Travel Tips</h2>
+        <ul id="tipsList"></ul>
+      </article>
+
+      <article class="panel">
+        <h2>Popular Attractions</h2>
+        <ul id="attractionsList"></ul>
+      </article>
+
+      <article class="panel">
+        <h2>Local Food</h2>
+        <ul id="foodList"></ul>
+      </article>
+    </section>
+  </main>
+
+  <div id="lightbox" class="lightbox" aria-hidden="true">
+    <button id="closeLightbox" class="lightbox-close" aria-label="Close image preview">×</button>
+    <button id="prevImage" class="lightbox-nav lightbox-prev" aria-label="Previous image">❮</button>
+    <div class="lightbox-stage">
+      <img id="lightboxImage" src="" alt="Destination preview" />
+    </div>
+    <button id="nextImage" class="lightbox-nav lightbox-next" aria-label="Next image">❯</button>
+  </div>
+
+  <footer class="site-footer">
+    <div class="footer-wrap">
+      <div class="footer-block">
+        <h3>Contact Us</h3>
+        <a class="footer-email" href="mailto:pratikshagunagi40@gmail.com">pratikshagunagi40@gmail.com</a>
+      </div>
+      <div class="footer-block">
+        <h3>Connect</h3>
+        <div class="social-links">
+          <a href="#" aria-label="GitHub profile">GitHub</a>
+          <a href="#" aria-label="LinkedIn profile">LinkedIn</a>
+        </div>
+      </div>
+      <p class="footer-credit">Designed by Pratiksha</p>
+    </div>
+  </footer>
+
+  <script src="details.js"></script>
+</body>
+</html>

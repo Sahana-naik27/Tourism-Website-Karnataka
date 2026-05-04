@@ -1,0 +1,459 @@
+﻿:root {
+  --bg: #f6f7fb;
+  --card: #ffffff;
+  --text: #1e2a3a;
+  --accent: #1f7a6f;
+  --accent-2: #ffa700;
+  --border: rgba(30, 42, 58, 0.12);
+  --shadow: 0 24px 80px rgba(45, 102, 115, 0.12);
+  --radius: 24px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', system-ui, sans-serif;
+  color: var(--text);
+  background: linear-gradient(125deg, #e7f3ff, #efe7ff, #ffe8f4, #e8f0ff);
+  background-size: 320% 320%;
+  line-height: 1.6;
+  animation: pageGradientFlow 28s ease-in-out infinite, pageFadeIn 0.7s ease forwards;
+  opacity: 0;
+}
+
+@keyframes pageGradientFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.hero {
+  min-height: 100vh;
+  padding: 48px 24px 48px;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+
+.hero-slides {
+  position: absolute;
+  inset: 0;
+}
+
+.hero-slide {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transform: scale(1.02);
+  transition: opacity 0.9s ease;
+}
+
+.hero-slide.active {
+  opacity: 1;
+  animation: heroZoomIn 6s ease forwards;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(rgba(12, 18, 32, 0.55), rgba(12, 18, 32, 0.58));
+}
+
+.hero-content {
+  max-width: 880px;
+  position: relative;
+  z-index: 2;
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 22px 20px;
+}
+
+.hero h1 {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  margin: 0 0 16px;
+  letter-spacing: -0.04em;
+}
+
+.hero p {
+  font-size: 1.15rem;
+  margin: 0 0 24px;
+  opacity: 0.92;
+}
+
+.hero-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  width: 44px;
+  height: 44px;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.25s ease, transform 0.25s ease;
+}
+
+.hero-prev {
+  left: 18px;
+}
+
+.hero-next {
+  right: 18px;
+}
+
+.hero-nav:hover {
+  background: rgba(255, 255, 255, 0.35);
+  transform: translateY(-50%) scale(1.04);
+}
+
+.hero-dots {
+  position: absolute;
+  bottom: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  display: flex;
+  gap: 9px;
+}
+
+.hero-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 0;
+  background: rgba(255, 255, 255, 0.45);
+  cursor: pointer;
+  transition: transform 0.25s ease, background 0.25s ease;
+}
+
+.hero-dot.active {
+  background: #fff;
+  transform: scale(1.2);
+}
+
+@keyframes heroZoomIn {
+  from { transform: scale(1.02); }
+  to { transform: scale(1.12); }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(10px) scale(0.95);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes pageFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.filter-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 24px;
+}
+
+.filter {
+  background: rgba(255,255,255,0.15);
+  color: #fff;
+  border: 2px solid rgba(255,255,255,0.25);
+  padding: 11px 22px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  font-size: 0.95rem;
+  letter-spacing: 0.3px;
+  position: relative;
+  overflow: hidden;
+}
+
+.filter::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: rgba(255,255,255,0.25);
+  transition: left 0.3s ease;
+  z-index: -1;
+}
+
+.filter:hover {
+  background: rgba(255,255,255,0.25);
+  border-color: rgba(255,255,255,0.4);
+  transform: translateY(-2px);
+}
+
+.filter.active {
+  background: #fff;
+  color: var(--accent);
+  border-color: #fff;
+  box-shadow: 0 6px 20px rgba(255,255,255,0.3);
+  transform: scale(1.05);
+  font-weight: 600;
+}
+
+.filter.active::before {
+  left: 100%;
+}
+
+main {
+  max-width: 1180px;
+  margin: -56px auto 0;
+  padding: 0 24px 48px;
+  position: relative;
+}
+
+.intro {
+  background: rgba(255, 255, 255, 0.56);
+  border-radius: var(--radius);
+  padding: 36px;
+  box-shadow: var(--shadow);
+  margin-bottom: 32px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(10px);
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.intro:hover {
+  transform: translateY(-3px);
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.55);
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.58);
+  border-radius: var(--radius);
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.35s ease, filter 0.35s ease;
+  backdrop-filter: blur(10px);
+  will-change: transform, opacity;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 28px 70px rgba(45, 102, 115, 0.2);
+}
+
+.card:focus-visible {
+  outline: 3px solid #1f7a6f;
+  outline-offset: 3px;
+}
+
+.card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.card-body {
+  padding: 24px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.card h3 {
+  margin: 0 0 12px;
+  font-size: 1.35rem;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  margin-bottom: 14px;
+  width: fit-content;
+}
+
+.badge.heritage { background: #ffe8b0; color: #8b5e00; }
+.badge.nature { background: #d8f3dc; color: #1a5f41; }
+.badge.temple { background: #f9d8d6; color: #8c2f2f; }
+.badge.hillstation { background: #dbeafe; color: #1e3a8a; }
+
+.card p {
+  margin: 0 0 16px;
+  flex: 1;
+}
+
+.card .location {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 0.95rem;
+  color: #667085;
+}
+
+.card .location span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.site-footer {
+  background: rgba(14, 22, 36, 0.88);
+  color: #c5d0df;
+  margin-top: 24px;
+  backdrop-filter: blur(5px);
+}
+
+.footer-wrap {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 36px 24px 28px;
+  display: grid;
+  gap: 16px;
+}
+
+.footer-block h3 {
+  margin: 0 0 8px;
+  font-size: 1rem;
+  color: #ffffff;
+}
+
+.footer-email,
+.social-links a {
+  color: #9fdcff;
+  text-decoration: none;
+  transition: color 0.25s ease, opacity 0.25s ease, transform 0.25s ease;
+}
+
+.footer-email:hover,
+.social-links a:hover {
+  color: #ffffff;
+  opacity: 1;
+  transform: translateY(-1px);
+}
+
+.social-links {
+  display: flex;
+  gap: 16px;
+}
+
+.footer-credit {
+  margin: 4px 0 0;
+  color: #d2dae5;
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+  padding-top: 14px;
+}
+
+@media (max-width: 640px) {
+  .hero {
+    padding-top: 48px;
+    padding-bottom: 32px;
+    min-height: 92vh;
+  }
+
+  .hero h1 {
+    font-size: 2.4rem;
+  }
+
+  .hero-nav {
+    width: 40px;
+    height: 40px;
+  }
+
+  .hero-prev {
+    left: 10px;
+  }
+
+  .hero-next {
+    right: 10px;
+  }
+
+  .filter-group {
+    gap: 8px;
+  }
+
+  .filter {
+    padding: 10px 16px;
+    font-size: 0.85rem;
+    border-radius: 20px;
+  }
+
+  .filter.active {
+    transform: scale(1.02);
+  }
+
+  .cards {
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .filter-group {
+    gap: 6px;
+  }
+
+  .filter {
+    padding: 9px 14px;
+    font-size: 0.8rem;
+  }
+
+  .filter:hover {
+    transform: translateY(-1px);
+  }
+
+  .filter.active {
+    transform: scale(1.01);
+  }
+
+  .cards {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+}
